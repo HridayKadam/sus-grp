@@ -69,15 +69,6 @@ const foundersData = [
   },
 ];
 
-function getInitials(name) {
-  return name
-    .split(" ")
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase()
-    .substring(0, 2);
-}
-
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("all");
@@ -94,67 +85,58 @@ export default function Home() {
   });
 
   return (
-    <>
-      <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-        <div className="orb-1 animate-float"></div>
-        <div className="orb-2 animate-float"></div>
-      </div>
+    <div className="bg-white min-h-screen text-[#333333] font-sans selection:bg-[#F26522] selection:text-white">
+      {/* Navigation */}
+      <nav className="border-b border-[#EAEAEA] py-4 px-6 md:px-12 flex justify-between items-center bg-white sticky top-0 z-10">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-[#F26522] text-white flex items-center justify-center font-bold text-lg leading-none">
+            S
+          </div>
+          <span className="font-semibold text-lg tracking-tight">SUS Group</span>
+        </div>
+        <div className="flex gap-6 text-sm font-medium text-[#666666]">
+          <a href="#" className="text-black">Directory</a>
+          <a href="#" className="hover:text-black transition-colors">About</a>
+        </div>
+      </nav>
 
-      <header className="pt-6 pb-16 border-b border-white/10 bg-gradient-to-b from-black to-transparent px-6">
-        <div className="max-w-6xl mx-auto">
-          <nav className="flex justify-between items-center mb-20">
-            <div className="text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-              SUS Group
-            </div>
-            <div className="flex gap-8 text-sm font-medium">
-              <a href="#" className="text-white">
-                Directory
-              </a>
-              <a href="#" className="text-zinc-400 hover:text-white transition-colors">
-                About
-              </a>
-            </div>
-          </nav>
-          
-          <div className="text-center max-w-2xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6 tracking-tight">
-              Startup Community
-            </h1>
-            <p className="text-xl text-zinc-400 mb-12">
-              Discover founders, explore startups, and find your next big opportunity.
-            </p>
-            
-            <div className="max-w-md mx-auto relative">
-              <input
-                type="text"
-                placeholder="Search by founder, startup, or domain..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-6 py-4 rounded-full border border-white/10 bg-white/5 text-white placeholder-zinc-500 outline-none transition-all focus:border-violet-500 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)] backdrop-blur-md"
-              />
-            </div>
+      {/* Header Section */}
+      <header className="bg-[#F9F9F9] border-b border-[#EAEAEA] py-16 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-black">
+            Startup Founders Directory
+          </h1>
+          <p className="text-[#666666] text-lg max-w-2xl mb-8">
+            Discover founders from our community, explore their startups, and see who is actively hiring for their next growth phase.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 max-w-xl">
+            <input
+              type="text"
+              placeholder="Search founders, startups, or roles..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="flex-grow px-4 py-3 border border-[#EAEAEA] rounded focus:outline-none focus:border-[#F26522] transition-colors"
+            />
           </div>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-16">
-        <div className="flex justify-center gap-4 mb-12">
+      {/* Main Content */}
+      <main className="max-w-5xl mx-auto px-6 md:px-12 py-12">
+        <div className="flex gap-4 mb-8 border-b border-[#EAEAEA] pb-4">
           <button
             onClick={() => setFilter("all")}
-            className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
-              filter === "all"
-                ? "bg-white text-black"
-                : "border border-white/10 text-zinc-400 hover:bg-white/5 hover:text-white"
+            className={`text-sm font-semibold pb-4 -mb-[17px] border-b-2 transition-colors ${
+              filter === "all" ? "border-[#F26522] text-black" : "border-transparent text-[#666666] hover:text-black"
             }`}
           >
-            All
+            All Founders
           </button>
           <button
             onClick={() => setFilter("hiring")}
-            className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
-              filter === "hiring"
-                ? "bg-white text-black"
-                : "border border-white/10 text-zinc-400 hover:bg-white/5 hover:text-white"
+            className={`text-sm font-semibold pb-4 -mb-[17px] border-b-2 transition-colors ${
+              filter === "hiring" ? "border-[#F26522] text-black" : "border-transparent text-[#666666] hover:text-black"
             }`}
           >
             Hiring Now
@@ -162,8 +144,8 @@ export default function Home() {
         </div>
 
         {filteredFounders.length === 0 ? (
-          <div className="text-center text-zinc-500 py-12">
-            No founders match your search criteria.
+          <div className="py-12 text-[#666666]">
+            No results found. Try adjusting your search or filters.
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -173,71 +155,51 @@ export default function Home() {
           </div>
         )}
       </main>
-      
-      <footer className="py-10 border-t border-white/10 text-center text-sm text-zinc-500 mt-auto">
-        &copy; 2026 SUS Group Community. All rights reserved.
+
+      <footer className="border-t border-[#EAEAEA] py-8 px-6 md:px-12 text-sm text-[#666666]">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <div>&copy; 2026 SUS Group.</div>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-black">Guidelines</a>
+            <a href="#" className="hover:text-black">Contact</a>
+          </div>
+        </div>
       </footer>
-    </>
+    </div>
   );
 }
 
 function FounderCard({ founder }) {
-  const handleMouseMove = (e) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty("--mouse-x", `${x}px`);
-    card.style.setProperty("--mouse-y", `${y}px`);
-  };
-
   return (
-    <div
-      className="glass-card rounded-3xl p-8 flex flex-col relative overflow-hidden group hover:-translate-y-1 transition-all duration-300 hover:border-white/20"
-      onMouseMove={handleMouseMove}
-    >
-      <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-        style={{
-          background: "radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%)"
-        }}
-      />
-      
-      <div className="flex justify-between items-start mb-6">
-        <div>
-          <h3 className="text-2xl font-semibold mb-1">{founder.name}</h3>
-          <div className="text-violet-400 font-medium">{founder.startup}</div>
-        </div>
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center font-semibold text-lg shrink-0">
-          {getInitials(founder.name)}
-        </div>
+    <div className="border border-[#EAEAEA] bg-white p-6 rounded hover:shadow-sm transition-shadow flex flex-col">
+      <div className="mb-4">
+        <h3 className="font-bold text-xl text-black leading-tight mb-1">{founder.name}</h3>
+        <div className="text-[#F26522] font-semibold text-sm">{founder.startup}</div>
       </div>
       
       <div className="flex-grow mb-6">
         {founder.hiring ? (
-          <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-semibold mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-2 shadow-[0_0_8px_currentColor]" />
-            Hiring Now
+          <div>
+            <div className="text-xs font-bold text-green-700 bg-green-50 uppercase inline-block px-2 py-1 rounded mb-3 border border-green-200">
+              Hiring
+            </div>
+            <div className="text-sm text-[#666666]">
+              <span className="font-semibold text-black">Roles:</span> {founder.domain}
+            </div>
           </div>
         ) : (
-          <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-rose-500/15 text-rose-400 text-xs font-semibold mb-4">
-            Not Hiring
+          <div>
+            <div className="text-xs font-bold text-[#666666] bg-[#F9F9F9] uppercase inline-block px-2 py-1 rounded mb-3 border border-[#EAEAEA]">
+              Not Hiring
+            </div>
           </div>
-        )}
-        
-        {founder.hiring ? (
-          <div className="text-sm text-zinc-400">
-            <strong className="text-zinc-300 font-medium">Roles:</strong> {founder.domain}
-          </div>
-        ) : (
-          <div className="text-sm text-zinc-500">Team is currently full.</div>
         )}
       </div>
       
-      <div className="pt-6 border-t border-white/10 flex justify-end">
+      <div className="mt-auto">
         <a
           href={founder.contact}
-          className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 text-sm font-medium hover:bg-white hover:text-black transition-colors"
+          className="block w-full text-center bg-[#F26522] hover:bg-[#d9561c] text-white font-semibold py-2 px-4 rounded text-sm transition-colors"
         >
           Connect
         </a>
