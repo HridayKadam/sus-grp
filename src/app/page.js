@@ -85,21 +85,7 @@ export default function Home() {
   });
 
   return (
-    <div className="bg-white min-h-screen text-[#333333] font-sans selection:bg-[#F26522] selection:text-white">
-      {/* Navigation */}
-      <nav className="border-b border-[#EAEAEA] py-4 px-6 md:px-12 flex justify-between items-center bg-white sticky top-0 z-10">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#F26522] text-white flex items-center justify-center font-bold text-lg leading-none">
-            S
-          </div>
-          <span className="font-semibold text-lg tracking-tight">SUS Group</span>
-        </div>
-        <div className="flex gap-6 text-sm font-medium text-[#666666]">
-          <a href="#" className="text-black">Directory</a>
-          <a href="#" className="hover:text-black transition-colors">About</a>
-        </div>
-      </nav>
-
+    <>
       {/* Header Section */}
       <header className="bg-[#F9F9F9] border-b border-[#EAEAEA] py-16 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
@@ -155,17 +141,7 @@ export default function Home() {
           </div>
         )}
       </main>
-
-      <footer className="border-t border-[#EAEAEA] py-8 px-6 md:px-12 text-sm text-[#666666]">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div>&copy; 2026 SUS Group.</div>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-black">Guidelines</a>
-            <a href="#" className="hover:text-black">Contact</a>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }
 
