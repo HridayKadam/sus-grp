@@ -87,43 +87,43 @@ export default function Home() {
   return (
     <>
       {/* Header Section */}
-      <header className="bg-[#F9F9F9] border-b border-[#EAEAEA] py-16 px-6 md:px-12">
+      <header className="bg-[#F9F9F9] border-b border-[#EAEAEA] py-10 md:py-16 px-4 md:px-12">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-black">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 text-black leading-tight">
             Startup Founders Directory
           </h1>
-          <p className="text-[#666666] text-lg max-w-2xl mb-8">
+          <p className="text-[#666666] text-base md:text-lg max-w-2xl mb-6 md:mb-8">
             Discover founders from our community, explore their startups, and see who is actively hiring for their next growth phase.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 max-w-xl">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 max-w-xl w-full">
             <input
               type="text"
               placeholder="Search founders, startups, or roles..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="flex-grow px-4 py-3 border border-[#EAEAEA] rounded focus:outline-none focus:border-[#F26522] transition-colors"
+              className="w-full px-4 py-3 border border-[#EAEAEA] rounded focus:outline-none focus:border-[#F26522] transition-colors text-base"
             />
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-5xl mx-auto px-6 md:px-12 py-12">
-        <div className="flex gap-4 mb-8 border-b border-[#EAEAEA] pb-4">
+      <main className="max-w-5xl mx-auto px-4 md:px-12 py-8 md:py-12 w-full">
+        <div className="flex flex-wrap gap-4 mb-6 md:mb-8 border-b border-[#EAEAEA] pb-0 md:pb-4 w-full">
           <button
             onClick={() => setFilter("all")}
-            className={`text-sm font-semibold pb-4 -mb-[17px] border-b-2 transition-colors ${
+            className={`text-sm md:text-base font-semibold pb-3 md:pb-4 border-b-2 transition-colors ${
               filter === "all" ? "border-[#F26522] text-black" : "border-transparent text-[#666666] hover:text-black"
-            }`}
+            } md:-mb-[17px]`}
           >
             All Founders
           </button>
           <button
             onClick={() => setFilter("hiring")}
-            className={`text-sm font-semibold pb-4 -mb-[17px] border-b-2 transition-colors ${
+            className={`text-sm md:text-base font-semibold pb-3 md:pb-4 border-b-2 transition-colors ${
               filter === "hiring" ? "border-[#F26522] text-black" : "border-transparent text-[#666666] hover:text-black"
-            }`}
+            } md:-mb-[17px]`}
           >
             Hiring Now
           </button>
